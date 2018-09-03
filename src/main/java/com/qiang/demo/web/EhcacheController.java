@@ -31,4 +31,18 @@ public class EhcacheController {
 /*        EhcacheUtil.getInstance().addCache("age");//会触发 cacheManagerEvent的 add 事件
         EhcacheUtil.getInstance().removeCache("age");//会触发 cacheManagerEvent的 remove 事件*/
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/putElement", method = RequestMethod.GET)
+    public ModelAndView putElement(Model model, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        String key = request.getParameter("key");
+        String value = request.getParameter("value");
+        EhcacheUtil.getInstance().put("userCache", key, value);//会触发 cacheEvent的 put 事件*/
+//        System.out.println(EhcacheUtil.getInstance().get("userCache","name"));//会触发 cacheEvent的 get 事件
+        modelAndView.setViewName("hello");
+        return modelAndView;
+/*        EhcacheUtil.getInstance().addCache("age");//会触发 cacheManagerEvent的 add 事件
+        EhcacheUtil.getInstance().removeCache("age");//会触发 cacheManagerEvent的 remove 事件*/
+    }
 }

@@ -13,6 +13,14 @@
                                      properties="hostName=127.0.0.1, port=4001,socketTimeoutMillis=2000"/>
 
 
+    <!-- 集群配置 -->
+<!--    <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+                                     properties="peerDiscovery=manual,rmiUrls=//127.0.0.1:4001/userCache"/>
+
+    <cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
+                                     properties="hostName=127.0.0.1, port=4002,socketTimeoutMillis=2000"/>-->
+
+
     <cacheManagerEventListenerFactory class="com.qiang.demo.cache.ehcache.MyCacheManagerEventListenerFactory" />
 
     <cache name="userCache"
