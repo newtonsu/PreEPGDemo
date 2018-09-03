@@ -37,9 +37,11 @@
     </bean>
 
     <!--扫描web相关的controller-->
-    <context:component-scan base-package="com.qiang.demo.web"/>
+    <context:component-scan base-package="com.qiang.demo.*"/>
+
+    <import resource="spring-redis.xml"/>
 
 	<!--全局异常捕捉 -->
-	<bean class="com.qiang.demo.exception.GlobalExceptionResolver" />
+<!--	<bean class="com.qiang.demo.exception.GlobalExceptionResolver" />-->
 
 </beans>

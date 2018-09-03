@@ -1,6 +1,8 @@
 package com.qiang.demo.web;
 
 import com.qiang.demo.cache.ehcache.EhcacheUtil;
+import com.qiang.demo.service.MessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/ehcache")
 public class EhcacheController {
 
+//    @Autowired
+//    private RedisManager redisManager;
+
+    @Autowired
+    private MessageService messageService;
+
     @ResponseBody
     @RequestMapping(value = "/getElement", method = RequestMethod.GET)
     public ModelAndView addElement(Model model, HttpServletRequest request) {
@@ -25,6 +33,12 @@ public class EhcacheController {
         String value = EhcacheUtil.getInstance().get("userCache", key).toString();//会触发 cacheEvent的 get 事件
         request.setAttribute("value",value);
         modelAndView.setViewName("haha");
+//        redisManager.get(key);
+        try {
+            messageService.sendMsg(key,value) ;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return modelAndView;
       /*  EhcacheUtil.getInstance().put("userCache","name","qiang");//会触发 cacheEvent的 put 事件*/
 
@@ -41,6 +55,7 @@ public class EhcacheController {
         EhcacheUtil.getInstance().put("userCache", key, value);//会触发 cacheEvent的 put 事件*/
 //        System.out.println(EhcacheUtil.getInstance().get("userCache","name"));//会触发 cacheEvent的 get 事件
         modelAndView.setViewName("hello");
+//        redisManager.set(key,value);
         return modelAndView;
 /*        EhcacheUtil.getInstance().addCache("age");//会触发 cacheManagerEvent的 add 事件
         EhcacheUtil.getInstance().removeCache("age");//会触发 cacheManagerEvent的 remove 事件*/

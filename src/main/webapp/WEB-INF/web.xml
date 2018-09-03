@@ -1,8 +1,7 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app.xsd" version="3.0">
   <!--配置DispatcherServlet -->
   <servlet>
     <servlet-name>spring-dispatcher</servlet-name>
@@ -10,7 +9,7 @@
     <!-- 配置SpringMVC需要加载的配置文件 spring-xxx.xml -->
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-*.xml</param-value>
+      <param-value>classpath*:spring/spring-*.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -21,7 +20,7 @@
   </servlet-mapping>
 
   <!-- druid -->
-  <servlet>
+<!--  <servlet>
     <servlet-name>DruidStatView</servlet-name>
     <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
   </servlet>
@@ -41,5 +40,5 @@
   <filter-mapping>
     <filter-name>DruidWebStatFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping>-->
 </web-app>
